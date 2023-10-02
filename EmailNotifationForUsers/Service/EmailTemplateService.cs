@@ -14,18 +14,18 @@ public class EmailTemplateService : IEmailTemplateService
     };
     public IEnumerable<EmailTemplate> GetTemplate(IEnumerable<User> users)
     {      
-        var formattedtemplates = new List<EmailTemplate>();
+        var formattedTemplates = new List<EmailTemplate>();
         
         _templates[0].Body.Replace("{{FullName}}", $"{users.Select(u => u.FirstName + " " + u.LastName)}");
-        formattedtemplates.Add(_templates[0]);
+        formattedTemplates.Add(_templates[0]);
 
         _templates[1].Body.Replace("{{FullName}}", $"{users.Select(u => u.FirstName + " " + u.LastName)}");
-        formattedtemplates.Add(_templates[1]);
+        formattedTemplates.Add(_templates[1]);
 
         _templates[0].Body.Replace("{{FullName}}", $"{users.Select(u => u.FirstName + " " + u.LastName)}");
-        formattedtemplates.Add(_templates[2]);
+        formattedTemplates.Add(_templates[2]);
             
-        foreach (var template in formattedtemplates)
+        foreach (var template in formattedTemplates)
         {
             yield return template;
         }

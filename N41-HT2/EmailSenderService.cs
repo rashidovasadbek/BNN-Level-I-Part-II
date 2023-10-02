@@ -33,7 +33,7 @@ public class EmailSenderService
             mail.Subject = subject;
             mail.Body = body;
 
-                await smtp.SendMailAsync(mail);
+            await smtp.SendMailAsync(mail);
             
         }
         catch (Exception e)
