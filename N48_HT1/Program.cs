@@ -6,7 +6,10 @@ using N48_HT1.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var fileContextOption = new FileContextOptions<AppFileContext>(Path.Combine(builder.Environment.ContentRootPath, "Data/Storage"));
+var fileContextOption = new FileContextOptions<AppFileContext>
+{
+   StorageRootPath = Path.Combine(builder.Environment.ContentRootPath, "Data/Storage")
+};
 
 builder.Services.AddSingleton<IFileContextOptions<IFileContext>>(fileContextOption);
 builder.Services.AddScoped<IDataContext, AppFileContext>( provider =>

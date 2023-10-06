@@ -39,13 +39,13 @@ namespace N48_HT1.Controllers
         public async ValueTask<IActionResult> UpdateOrder([FromBody] Order order)
         {
             var result= await _orderService.UpdateAsync(order);
-            return NoContent();
+            return Ok(result);
         }
         [HttpDelete("{orderId:guid}")]
         public async ValueTask<IActionResult> DeleteUser([FromRoute] Guid orderId)
         {
             var result  = await _orderService.DeleteAsync(orderId);
-            return NoContent();
+            return Ok(result);
         }
     }
 }

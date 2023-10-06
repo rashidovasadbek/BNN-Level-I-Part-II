@@ -9,8 +9,9 @@ namespace N48_HT1.DataAccsess
 {
     public class AppFileContext : FileContext,IDataContext
     {
-        public IFileSet<User, Guid> Users => Set<User>(nameof(Users));
-        public IFileSet<Order,Guid> Orders => Set<Order>(nameof(Orders));
+        public IFileSet<User, Guid> Users => Set<User, Guid>(nameof(Users));
+
+        public IFileSet<Order,Guid> Orders => Set<Order, Guid>(nameof(Orders));
         public AppFileContext(IFileContextOptions<IFileContext> fileContextOptions) : base(fileContextOptions)
         {
             OnSaveChanges += AddPrimaryKeys;

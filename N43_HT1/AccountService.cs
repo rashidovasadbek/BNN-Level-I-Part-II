@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
-namespace N43_HT1
+namespace N43_HT1;
+
+public class AccountService
 {
-    internal class AccountService
-    {
-    }
+    
 }

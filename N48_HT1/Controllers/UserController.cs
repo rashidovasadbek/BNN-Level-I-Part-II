@@ -44,10 +44,10 @@ namespace N48_HT1.Controllers
         }
         
         [HttpDelete("{userId:guid}")]
-        public async ValueTask<IActionResult> DeleteUser([FromRoute] Guid userId)
+        public async ValueTask<IActionResult> DeleteUser([FromRoute] Guid userId, IUserService userService)
         {
-            var result = await _userService.DeleteAsync(userId);
-            return NoContent();
+            var result = await userService.DeleteAsync(userId);
+            return Ok(result);
         }
 
     }
