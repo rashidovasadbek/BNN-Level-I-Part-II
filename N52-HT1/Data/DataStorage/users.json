@@ -1,0 +1,10 @@
+[
+  {
+    "Id": "07f2c87d-a9f1-482c-9aaf-e905acc93fd6",
+    "FirstName": "string",
+    "LastName": "string",
+    "EmailAddress": "asadbekrashidov000@gmail.com",
+    "Password": "string",
+    "IsDeleted": true
+  }
+]
