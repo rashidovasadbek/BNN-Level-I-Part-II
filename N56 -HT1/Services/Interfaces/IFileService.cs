@@ -4,6 +4,7 @@ namespace N56__HT1.Services.Interfaces;
 
 public interface IFileService
 {
-    ValueTask<IList<StorageFile>> GetFilesByPathAsync(IEnumerable<string> filesPath);
-    ValueTask<StorageFile> GetFileByPathAsync(string filePath);
+    string GetFileExtantions(string path);
+    long GetFileSize(string filePath);
+    bool DeletedFile(string filePath);
 }
