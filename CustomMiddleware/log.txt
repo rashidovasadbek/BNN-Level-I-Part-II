@@ -1,0 +1,3 @@
+2023-10-24 16:00:44Z request path - / with method
+GET2023-10-24 16:01:06Z request path - /hello with method
+GET2023-10-24 16:13:28Z request path - /hello/salom with method GET2023-10-25 10:27:44Z request path - / with method GET2023-10-25 10:42:49Z request path - / with method GET2023-10-25 10:42:58Z request path - /swagger with method GET2023-10-25 10:43:03Z request path - /swagger with method GET
