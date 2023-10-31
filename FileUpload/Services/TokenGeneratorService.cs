@@ -13,7 +13,7 @@ namespace FileUpload.Services;
 
 public class TokenGeneratorService : ITokenGeneratorService
 {
-    public string SecretKey = "8E6225FC-6E84-4E50-805F-FB3B5B6138BE";
+   // public string SecretKey = "8E6225FC-6E84-4E50-805F-FB3B5B6138BE";
     private readonly JwtSettings _jwtSettings;
 
     public TokenGeneratorService(IOptions<JwtSettings> jwtSettings)
@@ -26,7 +26,6 @@ public class TokenGeneratorService : ITokenGeneratorService
         var token = new JwtSecurityTokenHandler().WriteToken(jwtToken);
         return token;
     }
-
 
     public JwtSecurityToken GetJwtToken(User user)
     {

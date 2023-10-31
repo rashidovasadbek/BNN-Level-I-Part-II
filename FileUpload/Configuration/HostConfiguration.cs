@@ -5,16 +5,16 @@ public static partial class HostConfiguration
     public static  ValueTask<WebApplicationBuilder> ConfigureAsync(this WebApplicationBuilder builder)
     {
         builder
-            //.AddIdentity()
+            .AddIdentity()
             .AddExposers()
             .AddDevTools();
         return new(builder);
     }
     public static ValueTask<WebApplication> ConfigureAsync(this WebApplication app)
     {
-        app 
+        app
            .UseIdentity()
-           .UseDevTools()
+           .UseExposers()
            .UseDevTools();
        
        return new(app);

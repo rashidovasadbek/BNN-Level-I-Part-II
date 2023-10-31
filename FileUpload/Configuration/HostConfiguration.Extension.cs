@@ -13,7 +13,7 @@ public static partial class HostConfiguration
     {
         builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection(nameof(JwtSettings)));
 
-        builder.Services.AddTransient<ITokenGeneratorService,TokenGeneratorService>();
+        builder.Services.AddTransient<ITokenGeneratorService, TokenGeneratorService>();
         
         builder.Services.AddScoped<IAuthService, AuthService>();
         
@@ -43,6 +43,7 @@ public static partial class HostConfiguration
                 };
 
             });
+
         return builder;
     }
 
@@ -73,7 +74,7 @@ public static partial class HostConfiguration
     public static WebApplication UseDevTools(this WebApplication app)
     {
         app.UseSwagger();
-        app.UseSwaggerUI();
+        app.UseSwaggerUI();      
 
         return app;
     }
@@ -81,7 +82,7 @@ public static partial class HostConfiguration
     public static WebApplication UseExposers(this WebApplication app)
     {
         app.MapControllers();
-
+        
         return app;
     }
 }

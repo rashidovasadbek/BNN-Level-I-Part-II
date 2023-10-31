@@ -36,7 +36,9 @@ public class AuthService : IAuthService
 
     public ValueTask<string> LoginAsync(LoginDetails loginDetails)
     {
-        var foundUser = _users.FirstOrDefault(user => user.EmailAddress == loginDetails.EmailAddress && user.Password == loginDetails.Password);
+        var foundUser = _users.FirstOrDefault(user =>
+        user.EmailAddress == loginDetails.EmailAddress 
+        && user.Password == loginDetails.Password);
 
         if (foundUser is null)
             throw new AuthenticationException("Login details are invalid, contact support.");
