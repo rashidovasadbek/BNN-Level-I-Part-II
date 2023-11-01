@@ -11,8 +11,4 @@
     <ProjectReference Include="..\N66.LibraryManagement.Persistance\N66.LibraryManagement.Persistance.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
 </Project>

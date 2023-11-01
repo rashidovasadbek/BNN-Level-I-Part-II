@@ -8,5 +8,6 @@ public class Book
 
     public string Description { get; set; } = string.Empty;
 
-    public Guid AutherId { get; set; } 
+    public virtual Auther Auther { get; set; } 
+
 }
