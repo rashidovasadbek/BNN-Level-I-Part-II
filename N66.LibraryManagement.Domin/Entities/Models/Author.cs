@@ -1,6 +1,6 @@
 ﻿namespace N66.LibraryManagement.Domin.Entities.Models;
 
-public class Auther
+public class Author
 {
     public Guid Id { get; set; } 
 

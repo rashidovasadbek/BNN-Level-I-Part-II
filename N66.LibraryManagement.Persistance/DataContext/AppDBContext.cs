@@ -5,19 +5,17 @@ namespace N66.LibraryManagement.Persistance.DataContext;
 
 public class AppDBContext : DbContext
 {
-    public DbSet<Auther> Authers => Set<Auther>();  
+    public DbSet<Author> Authors => Set<Author>();  
     public DbSet<Book> Books => Set<Book>();
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        base.OnConfiguring(optionsBuilder);
-        optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=LibraryManagement;Username=postgres;Password=725264");
 
+    public AppDBContext(DbContextOptions<AppDBContext> optoins) : base(optoins)
+    {
+        
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        base.OnModelCreating(modelBuilder);
-        modelBuilder.Entity<Book>().HasOne(book => book.Auther).WithMany();
+       modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDBContext).Assembly);
     }
 }

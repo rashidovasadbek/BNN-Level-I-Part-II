@@ -1,6 +1,7 @@
 ﻿using N66.LibraryManagement.Application.Services;
 using N66.LibraryManagement.Domin.Entities.Models;
 using N66.LibraryManagement.Persistance.DataContext;
+using System.Linq.Expressions;
 
 namespace N66.LibraryManagement.Infrastucture.Services;
 
@@ -12,14 +13,6 @@ public class BookService : IEntityBaseService<Book>
     {
         _appDBContext = appDBContext;
     }
-    public async ValueTask<Book> CreateAsync(Book book, bool saveChanges, CancellationToken cancellationToken = default)
-    {
-        await _appDBContext.AddAsync(book, cancellationToken);
-        
-       if(saveChanges) await _appDBContext.SaveChangesAsync();
-        
-        return book;
-    }
 
     public  ValueTask<Book> GetByIdAsync(Guid bookId, CancellationToken cancellationToken = default)
     {
@@ -30,7 +23,19 @@ public class BookService : IEntityBaseService<Book>
        return new ValueTask<Book>(foundBook);
     }
 
-    public async ValueTask<Book> UpdateAsync(Book book, bool saveChanges = true)
+    public IQueryable<Book> Get(Expression<Func<Book, bool>>? pridicate = null)
+        => pridicate != null ? _appDBContext.Books.Where(pridicate) : _appDBContext.Books;
+
+    public async ValueTask<Book> CreateAsync(Book book, bool saveChanges, CancellationToken cancellationToken = default)
+    {
+        await _appDBContext.AddAsync(book, cancellationToken);
+        
+       if(saveChanges) await _appDBContext.SaveChangesAsync(cancellationToken);
+        
+        return book;
+    }
+
+    public async ValueTask<Book> UpdateAsync(Book book, bool saveChanges = true, CancellationToken cancellationToken = default)
     {
        var foundBook = await GetByIdAsync(book.Id);
 
@@ -39,24 +44,23 @@ public class BookService : IEntityBaseService<Book>
        
        _appDBContext.Books.Update(foundBook);
        
-      if(saveChanges) await _appDBContext.SaveChangesAsync();
+      if(saveChanges) await _appDBContext.SaveChangesAsync(cancellationToken);
        return book;
     }
 
-    public async ValueTask<Book> DeleteAsync(Guid autherId, bool saveChanges = true)
+    public async ValueTask<Book> DeleteAsync(Guid autherId, bool saveChanges = true, CancellationToken cancellationToken = default)
     {
         var foundBook = await GetByIdAsync(autherId);
 
         _appDBContext.Books.Remove(foundBook);
 
-       if(saveChanges) await _appDBContext.SaveChangesAsync();
+       if(saveChanges) await _appDBContext.SaveChangesAsync(cancellationToken);
 
         return foundBook;
     }
 
-    public ValueTask<ICollection<Book>> GetAsync(IEnumerable<Guid> Ids)
+    public ValueTask<ICollection<Book>> GetAsync(IEnumerable<Guid> Ids, CancellationToken cancellationToken = default)
     {
         throw new NotImplementedException();
     }
-
 }
