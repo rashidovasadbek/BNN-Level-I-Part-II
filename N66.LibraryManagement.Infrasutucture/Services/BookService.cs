@@ -48,7 +48,7 @@ public class BookService : IEntityBaseService<Book>
        return book;
     }
 
-    public async ValueTask<Book> DeleteAsync(Guid bookId, bool saveChanges = true, CancellationToken cancellationToken = default)
+    public async ValueTask<Book> DeleteByIdAsync(Guid bookId, bool saveChanges = true, CancellationToken cancellationToken = default)
     {
         var foundBook = await GetByIdAsync(bookId);
 

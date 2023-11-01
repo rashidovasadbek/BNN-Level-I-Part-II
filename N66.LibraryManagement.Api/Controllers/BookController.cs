@@ -31,9 +31,9 @@ public class BookController : ControllerBase
     }
 
     [HttpDelete("books/bookId:guid")]
-    public async Task<IActionResult> Delete([FromRoute] Guid id)
+    public async Task<IActionResult> Delete(Guid id)
     {
-        Ok(await _entityBaseService.DeleteAsync(id, true));
+        Ok(await _entityBaseService.DeleteByIdAsync(id, true));
         return NoContent();
     }
 }

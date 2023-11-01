@@ -34,9 +34,9 @@ public class AuthorController : ControllerBase
     }
 
     [HttpDelete("authers/auhterId:guid")]
-    public async Task<IActionResult> Delete([FromRoute] Guid authorId)
+    public async Task<IActionResult> Delete( Guid authorId)
     {
-        Ok(await _entityBaseService.DeleteAsync(authorId, true));
+        Ok(await _entityBaseService.DeleteByIdAsync(authorId, true));
         return NoContent();
     }
 }

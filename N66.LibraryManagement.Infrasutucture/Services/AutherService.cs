@@ -55,13 +55,16 @@ public class AutherService : IEntityBaseService<Author>
         return foundAuther;
     }
 
-    public async ValueTask<Author> DeleteAsync(Guid autherId, bool saveChanges = true, CancellationToken cancellationToken = default)
+    public async ValueTask<Author> DeleteByIdAsync(Guid autherId, bool saveChanges = true, CancellationToken cancellationToken = default)
     {
-        var foundAuther  = await GetByIdAsync(autherId);
+        var foundAuther  = _appDBContext.Authors.Find(autherId);
 
+        if (foundAuther is null)
+            throw new InvalidOperationException($"User with id {foundAuther} not found.");
+       
         _appDBContext.Authors.Remove(foundAuther);
         
-       if(saveChanges) await _appDBContext.SaveChangesAsync(cancellationToken);
+        if(saveChanges) await _appDBContext.SaveChangesAsync(cancellationToken);
        
         return foundAuther;
     }
