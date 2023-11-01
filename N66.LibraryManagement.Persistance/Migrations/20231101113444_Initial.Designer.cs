@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace N66.LibraryManagement.Persistance.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20231101043925_Initial")]
+    [Migration("20231101113444_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -25,7 +25,7 @@ namespace N66.LibraryManagement.Persistance.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("N66.LibraryManagement.Domin.Entities.Models.Auther", b =>
+            modelBuilder.Entity("N66.LibraryManagement.Domin.Entities.Models.Author", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -33,15 +33,17 @@ namespace N66.LibraryManagement.Persistance.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(265)
+                        .HasColumnType("character varying(265)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(265)
+                        .HasColumnType("character varying(265)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Authers");
+                    b.ToTable("Authors");
                 });
 
             modelBuilder.Entity("N66.LibraryManagement.Domin.Entities.Models.Book", b =>
@@ -55,28 +57,17 @@ namespace N66.LibraryManagement.Persistance.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(265)
+                        .HasColumnType("character varying(265)");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(265)
+                        .HasColumnType("character varying(265)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AutherId");
-
                     b.ToTable("Books");
-                });
-
-            modelBuilder.Entity("N66.LibraryManagement.Domin.Entities.Models.Book", b =>
-                {
-                    b.HasOne("N66.LibraryManagement.Domin.Entities.Models.Auther", "Auther")
-                        .WithMany()
-                        .HasForeignKey("AutherId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Auther");
                 });
 #pragma warning restore 612, 618
         }

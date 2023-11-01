@@ -48,9 +48,9 @@ public class BookService : IEntityBaseService<Book>
        return book;
     }
 
-    public async ValueTask<Book> DeleteAsync(Guid autherId, bool saveChanges = true, CancellationToken cancellationToken = default)
+    public async ValueTask<Book> DeleteAsync(Guid bookId, bool saveChanges = true, CancellationToken cancellationToken = default)
     {
-        var foundBook = await GetByIdAsync(autherId);
+        var foundBook = await GetByIdAsync(bookId);
 
         _appDBContext.Books.Remove(foundBook);
 

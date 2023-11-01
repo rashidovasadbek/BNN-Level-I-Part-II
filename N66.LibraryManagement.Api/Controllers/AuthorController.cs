@@ -16,12 +16,15 @@ public class AuthorController : ControllerBase
     }
 
     [HttpPost("authors")]
-    public async Task<IActionResult> Create([FromBody] Author author)
-        => Ok(await _entityBaseService.CreateAsync(author,true));
+    public async Task<IActionResult> CreateAsync([FromBody] Author author)
+    {
+       var createdAuthor = await _entityBaseService.CreateAsync(author,true);
+        return CreatedAtAction(nameof(GetByIdAsync), new { id = createdAuthor.Id }, createdAuthor);
+    }
 
     [HttpGet("authers/auhterId:guid")]
-    public async Task<IActionResult> GetByIdAsync(Guid id)
-      => Ok(await _entityBaseService.GetByIdAsync(id));
+    public async Task<IActionResult> GetByIdAsync(Guid authorId)
+      => Ok(await _entityBaseService.GetByIdAsync(authorId));
     
     [HttpPut("auhters")]
     public async Task<IActionResult> Update([FromBody] Author author)
@@ -31,9 +34,9 @@ public class AuthorController : ControllerBase
     }
 
     [HttpDelete("authers/auhterId:guid")]
-    public async Task<IActionResult> Delete([FromRoute] Guid id)
+    public async Task<IActionResult> Delete([FromRoute] Guid authorId)
     {
-        Ok(await _entityBaseService.DeleteAsync(id, true));
+        Ok(await _entityBaseService.DeleteAsync(authorId, true));
         return NoContent();
     }
 }
