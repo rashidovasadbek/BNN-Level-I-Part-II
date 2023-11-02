@@ -34,6 +34,7 @@ public class AutherService : IEntityBaseService<Author>
 
     public async ValueTask<Author> CreateAsync(Author auther, bool saveChanges = true, CancellationToken cancellationToken = default)
     {
+       auther.Id = Guid.NewGuid();
        await _appDBContext.Authors.AddAsync(auther, cancellationToken);
        
        if(saveChanges) await _appDBContext.SaveChangesAsync(cancellationToken);

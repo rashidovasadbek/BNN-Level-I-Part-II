@@ -1,6 +1,7 @@
 ﻿using N66.LibraryManagement.Application.Services;
 using N66.LibraryManagement.Domin.Entities.Models;
 using N66.LibraryManagement.Persistance.DataContext;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure.Internal;
 using System.Linq.Expressions;
 
 namespace N66.LibraryManagement.Infrastucture.Services;
@@ -28,6 +29,7 @@ public class BookService : IEntityBaseService<Book>
 
     public async ValueTask<Book> CreateAsync(Book book, bool saveChanges, CancellationToken cancellationToken = default)
     {
+        book.Id = Guid.NewGuid();
         await _appDBContext.AddAsync(book, cancellationToken);
         
        if(saveChanges) await _appDBContext.SaveChangesAsync(cancellationToken);
