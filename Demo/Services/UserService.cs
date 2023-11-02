@@ -32,9 +32,14 @@ public class UserService : IUserService
         return newUser;
     }
 
-  /*  public async ValueTask<UserViewModel?> GetByIdAsync(Guid id)
+    public ValueTask<UserViewModel?> GetByIdAsync(Guid id)
     {
-        var result = _dataContext.Users.Adapt<List<UserViewModel>>();
-         
-    }*/
+        throw new NotImplementedException();
+    }
+
+    /*  public async ValueTask<UserViewModel?> GetByIdAsync(Guid id)
+      {
+          var result = _dataContext.Users.Adapt<List<UserViewModel>>();
+
+      }*/
 }
