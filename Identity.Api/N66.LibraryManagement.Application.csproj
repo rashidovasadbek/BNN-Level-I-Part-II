@@ -7,11 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\N64.Identity.Domen\N64.Identity.Domen.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\N66.LibraryManagement.Domin\N66.LibraryManagement.Domin.csproj" />
   </ItemGroup>
 
 </Project>
